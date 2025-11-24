@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+
+<VBox xmlns="http://javafx.com/javafx/21.0.6"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.projetpoobibliotheque.MainController"
+      spacing="10" alignment="CENTER">
+
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <Label text="Bibliothèque POO 3A" style="-fx-font-size: 18px;"/>
+
+    <TabPane fx:id="tabPane" prefWidth="600" prefHeight="400">
+
+        <Tab text="Documents">
+            <VBox spacing="5" alignment="CENTER">
+                <TableView fx:id="tableDocuments" prefHeight="200" prefWidth="580">
+                    <columns>
+                        <TableColumn fx:id="titreCol" text="Titre" prefWidth="200"/>
+                        <TableColumn fx:id="auteurCol" text="Auteur" prefWidth="200"/>
+                        <TableColumn fx:id="disponibleCol" text="Disponible" prefWidth="180"/>
+                    </columns>
+                </TableView>
+                <Button text="Charger les documents" onAction="#loadDocuments"/>
+            </VBox>
+        </Tab>
+
+        <Tab text="Emprunts">
+            <VBox spacing="5" alignment="CENTER">
+                <TableView fx:id="tableEmprunts" prefHeight="200" prefWidth="580">
+                    <columns>
+                        <TableColumn fx:id="empruntDocCol" text="Document" prefWidth="200"/>
+                        <TableColumn fx:id="empruntMembreCol" text="Membre" prefWidth="200"/>
+                        <TableColumn fx:id="empruntDateCol" text="Date Emprunt" prefWidth="180"/>
+                        <TableColumn fx:id="empruntRetourCol" text="Date Retour" prefWidth="180"/>
+                    </columns>
+                </TableView>
+                <Button text="Charger les emprunts" onAction="#loadEmprunts"/>
+            </VBox>
+        </Tab>
+
+        <Tab text="Membres">
+            <VBox spacing="5" alignment="CENTER">
+                <TableView fx:id="tableMembres" prefHeight="200" prefWidth="580">
+                    <columns>
+                        <TableColumn fx:id="membreNomCol" text="Nom" prefWidth="200"/>
+                        <TableColumn fx:id="membreEmailCol" text="Email" prefWidth="300"/>
+                    </columns>
+                </TableView>
+                <Button text="Charger les membres" onAction="#loadMembres"/>
+            </VBox>
+        </Tab>
+
+        <Tab text="Livres">
+            <VBox spacing="5" alignment="CENTER">
+                <TableView fx:id="tableLivres" prefHeight="200" prefWidth="580">
+                    <columns>
+                        <TableColumn fx:id="livreTitreCol" text="Titre" prefWidth="200"/>
+                        <TableColumn fx:id="livreAuteurCol" text="Auteur" prefWidth="200"/>
+                        <TableColumn fx:id="livreIsbnCol" text="ISBN" prefWidth="180"/>
+                    </columns>
+                </TableView>
+                <Button text="Charger les livres" onAction="#loadLivres"/>
+            </VBox>
+        </Tab>
+
+        <Tab text="Magazines">
+            <VBox spacing="5" alignment="CENTER">
+                <TableView fx:id="tableMagazines" prefHeight="200" prefWidth="580">
+                    <columns>
+                        <TableColumn fx:id="magTitreCol" text="Titre" prefWidth="200"/>
+                        <TableColumn fx:id="magAuteurCol" text="Auteur" prefWidth="200"/>
+                        <TableColumn fx:id="magNumCol" text="Numéro" prefWidth="180"/>
+                    </columns>
+                </TableView>
+                <Button text="Charger les magazines" onAction="#loadMagazines"/>
+            </VBox>
+        </Tab>
+
+    </TabPane>
+</VBox>
