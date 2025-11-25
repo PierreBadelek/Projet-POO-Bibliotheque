@@ -39,6 +39,7 @@ public class MainController {
     @FXML
     public void initialize() {
         // Documents
+
         titreCol.setCellValueFactory(new PropertyValueFactory<>("titre"));
         auteurCol.setCellValueFactory(new PropertyValueFactory<>("auteur"));
         disponibleCol.setCellValueFactory(new PropertyValueFactory<>("disponible"));
@@ -52,7 +53,7 @@ public class MainController {
                 new javafx.beans.property.SimpleStringProperty(cell.getValue().getDateEmprunt().toString()));
         empruntRetourCol.setCellValueFactory(cell ->
                 new javafx.beans.property.SimpleStringProperty(
-                        cell.getValue().getDateRetour() != null ? cell.getValue().getDateRetour().toString() : "En cours"
+                        cell.getValue().getDateRetourEffective() != null ? cell.getValue().getDateRetourEffective().toString() : "En cours"
                 ));
 
         // Membres
