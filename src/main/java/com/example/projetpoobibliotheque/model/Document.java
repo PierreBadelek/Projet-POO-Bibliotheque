@@ -30,6 +30,11 @@ public abstract class Document {
 
     public abstract String getType();
 
+    public String afficherDetails() {
+        return String.format("[%s] #%d - %s par %s - Statut: %s",
+                getType(), id, titre, auteur, disponible ? "Disponible" : "Emprunté");
+    }
+
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     public String getTitre() { return titre; }

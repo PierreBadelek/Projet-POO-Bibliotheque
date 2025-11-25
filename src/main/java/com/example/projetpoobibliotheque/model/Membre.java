@@ -27,6 +27,10 @@ public class Membre {
         this.email = email;
     }
     
+    public List<Emprunt> consulterHistoriqueEmprunts() {
+        return new ArrayList<>(emprunts);
+    }
+
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     public String getNom() { return nom; }
@@ -35,7 +39,7 @@ public class Membre {
     public void setEmail(String email) { this.email = email; }
     public List<Emprunt> getEmprunts() { return emprunts; }
     public void setEmprunts(List<Emprunt> emprunts) { this.emprunts = emprunts; }
-    
+
     @Override
     public String toString() {
         return String.format("#%d - %s (%s)", id, nom, email);

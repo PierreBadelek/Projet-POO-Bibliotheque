@@ -22,24 +22,40 @@ public class Emprunt {
     
     @Column(nullable = false)
     private LocalDate dateEmprunt;
-    
+
+    @Column(nullable = false)
+    private LocalDate dateRetourPrevue;
+
     @Column
-    private LocalDate dateRetour;
-    
+    private LocalDate dateRetourEffective;
+
     public Emprunt() {}
-    
+
     public Emprunt(Document document, Membre membre) {
         this.document = document;
         this.membre = membre;
         this.dateEmprunt = LocalDate.now();
+        this.dateRetourPrevue = LocalDate.now().plusDays(14); // 14 jours par défaut
     }
-    
+
     public void retourner() {
-        this.dateRetour = LocalDate.now();
+        this.dateRetourEffective = LocalDate.now();
         document.setDisponible(true);
     }
-    
-    public boolean estEnCours() { return dateRetour == null; }
+
+    public boolean estEnCours() { return dateRetourEffective == null; }
+
+    public boolean estEnRetard() {
+        if (dateRetourEffective != null) {
+            return dateRetourEffective.isAfter(dateRetourPrevue);
+        }
+        return LocalDate.now().isAfter(dateRetourPrevue);
+    }
+
+    public int calculerDuree() {
+        LocalDate dateFin = dateRetourEffective != null ? dateRetourEffective : LocalDate.now();
+        return (int) java.time.temporal.ChronoUnit.DAYS.between(dateEmprunt, dateFin);
+    }
     
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
@@ -49,14 +65,17 @@ public class Emprunt {
     public void setMembre(Membre membre) { this.membre = membre; }
     public LocalDate getDateEmprunt() { return dateEmprunt; }
     public void setDateEmprunt(LocalDate dateEmprunt) { this.dateEmprunt = dateEmprunt; }
-    public LocalDate getDateRetour() { return dateRetour; }
-    public void setDateRetour(LocalDate dateRetour) { this.dateRetour = dateRetour; }
-    
+    public LocalDate getDateRetourPrevue() { return dateRetourPrevue; }
+    public void setDateRetourPrevue(LocalDate dateRetourPrevue) { this.dateRetourPrevue = dateRetourPrevue; }
+    public LocalDate getDateRetourEffective() { return dateRetourEffective; }
+    public void setDateRetourEffective(LocalDate dateRetourEffective) { this.dateRetourEffective = dateRetourEffective; }
+
     @Override
     public String toString() {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String statut = estEnCours() ? "EN COURS" : "Retourné le " + dateRetour.format(fmt);
-        return String.format("%s | %s | Emprunté le %s | %s",
-            document.getTitre(), membre.getNom(), dateEmprunt.format(fmt), statut);
+        String statut = estEnCours() ? "EN COURS" : "Retourné le " + dateRetourEffective.format(fmt);
+        if (estEnRetard()) statut += " (RETARD)";
+        return String.format("%s | %s | Emprunté le %s | Retour prévu: %s | %s",
+            document.getTitre(), membre.getNom(), dateEmprunt.format(fmt), dateRetourPrevue.format(fmt), statut);
     }
 }
