@@ -1,0 +1,169 @@
+/* style.css */
+
+/* 1. Fond général et police */
+.root {
+    -fx-font-family: 'Segoe UI', sans-serif;
+    -fx-background-color: #f4f4f4;
+}
+
+/* 2. Le titre principal */
+.label-titre {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 20px;
+}
+
+/* 3. Les Boutons (arrondis, couleur et effet survol) */
+.button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+    -fx-padding: 8px 15px;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
+.button:hover {
+    -fx-background-color: #2980b9;
+}
+
+/* 4. Le Tableau (En-têtes et lignes) */
+.table-view {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);
+    -fx-border-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #2c3e50;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: #ecf0f1;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+/* --- AMÉLIORATION DU TABLEAU --- */
+
+/* 1. Le conteneur du tableau : on enlève les bordures grises par défaut */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+
+/* 2. L'en-tête (Header) : Plus haut et plus moderne */
+.table-view .column-header-background {
+    -fx-background-color: #2c3e50;
+    -fx-background-insets: 0;
+    -fx-pref-height: 40px;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER-LEFT;
+}
+
+/* 3. Les lignes (Rows) */
+.table-row-cell {
+    -fx-cell-size: 35px;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #e0e0e0;
+}
+
+/* Couleur alternée (une ligne sur deux) */
+.table-row-cell:odd {
+    -fx-background-color: #f9f9f9;
+}
+.table-row-cell:even {
+    -fx-background-color: #ffffff;
+}
+
+/* Effet au survol de la souris (HOVER) */
+.table-row-cell:hover {
+    -fx-background-color: #e8f6fd;
+    -fx-cursor: hand;
+}
+
+/* Ligne sélectionnée */
+.table-row-cell:selected {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+/* 4. Supprimer la cellule vide "ascenseur" en haut à droite */
+.table-view .filler {
+    -fx-background-color: #2c3e50;
+}
+
+
+/* --- AMÉLIORATION DE LA NAVIGATION (TABS) --- */
+
+/* 1. Enlever la barre grise moche derrière les onglets */
+.tab-header-background {
+    -fx-background-color: transparent;
+}
+
+/* 2. Style général des onglets (taille) */
+.tab-pane {
+    -fx-tab-min-height: 40px;
+    -fx-tab-max-height: 40px;
+}
+
+/* 3. L'onglet au repos (Non sélectionné) */
+.tab {
+    -fx-background-color: #ecf0f1;
+    -fx-background-radius: 5px 5px 0 0;
+    -fx-background-insets: 0;
+    -fx-border-width: 0;
+    -fx-padding: 0 20px;
+    -fx-cursor: hand;
+}
+
+/* Le texte de l'onglet au repos */
+.tab .tab-label {
+    -fx-text-fill: #7f8c8d;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+}
+
+/* 4. Effet quand on passe la souris dessus (Hover) */
+.tab:hover {
+    -fx-background-color: #dfe6e9;
+    -fx-transition: 0.2s;
+}
+
+/* 5. L'onglet SÉLECTIONNÉ */
+.tab:selected {
+    -fx-background-color: #3498db;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 1);
+}
+
+/* Le texte de l'onglet sélectionné devient blanc */
+.tab:selected .tab-label {
+    -fx-text-fill: white;
+}
+
+/* 6. Enlever les bordures du contenu principal */
+.tab-content-area {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 10px 0 0 0;
+}
