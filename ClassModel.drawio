@@ -1,10 +1,10 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.1 Safari/537.36" version="29.0.3">
+<mxfile host="drawio-plugin" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" modified="2025-12-09T10:25:00.294Z" version="22.1.22" etag="GHMXK-qGJNFJWdj0CZsA" type="embed">
   <diagram name="Page-1" id="3HJpTxTjo7bqJU3zoqPR">
-    <mxGraphModel dx="1426" dy="2053" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="510" dy="1962" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="_vKSV3UclhJlr9DsUHWh-50" value="Bibliotheque" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="_vKSV3UclhJlr9DsUHWh-50" value="BibliothequeService" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="50" y="-180" width="280" height="280" as="geometry" />
         </mxCell>
         <mxCell id="_vKSV3UclhJlr9DsUHWh-51" value="+ nom : str" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="_vKSV3UclhJlr9DsUHWh-50" vertex="1">
@@ -84,7 +84,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="_vKSV3UclhJlr9DsUHWh-35" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="_vKSV3UclhJlr9DsUHWh-1" edge="1" target="_vKSV3UclhJlr9DsUHWh-62">
+        <mxCell id="_vKSV3UclhJlr9DsUHWh-35" value="" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="_vKSV3UclhJlr9DsUHWh-1" target="_vKSV3UclhJlr9DsUHWh-62" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="410" y="380" as="sourcePoint" />
             <mxPoint x="405" y="260" as="targetPoint" />
@@ -146,7 +146,7 @@
             <Array as="points" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="4vWLjLaPKa_yITde6-jE-1" value="* lesEmprunts" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="1">
+        <mxCell id="4vWLjLaPKa_yITde6-jE-1" value="* lesEmprunts" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="1" vertex="1" connectable="0">
           <mxGeometry x="650" y="170" as="geometry">
             <mxPoint x="48" y="-13" as="offset" />
           </mxGeometry>
