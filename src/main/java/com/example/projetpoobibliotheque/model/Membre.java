@@ -13,7 +13,10 @@ public class Membre {
     
     @Column(nullable = false)
     private String nom;
-    
+
+    @Column(nullable = false)
+    private String prenom;
+
     @Column(nullable = false)
     private String email;
     
@@ -21,9 +24,10 @@ public class Membre {
     private List<Emprunt> emprunts = new ArrayList<>();
     
     public Membre() {}
-    
-    public Membre(String nom, String email) {
+
+    public Membre(String nom, String prenom, String email) {
         this.nom = nom;
+        this.prenom = prenom;
         this.email = email;
     }
     
@@ -35,6 +39,8 @@ public class Membre {
     public void setId(int id) { this.id = id; }
     public String getNom() { return nom; }
     public void setNom(String nom) { this.nom = nom; }
+    public String getPrenom() { return prenom; }
+    public void setPrenom(String prenom) { this.prenom = prenom; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
     public List<Emprunt> getEmprunts() { return emprunts; }
@@ -42,6 +48,6 @@ public class Membre {
 
     @Override
     public String toString() {
-        return String.format("#%d - %s (%s)", id, nom, email);
+        return String.format("#%d - %s %s (%s)", id, nom, prenom, email);
     }
 }

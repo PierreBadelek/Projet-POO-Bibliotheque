@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.projetpoobibliotheque.controller.EmpruntsController" spacing="10" style="-fx-padding: 20;">
+
+    <Label text="Gestion des Emprunts" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="Rechercher par membre ou document..." prefWidth="300"/>
+        <Button text="Rechercher" onAction="#handleSearch" style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+        <Button text="Ajouter" onAction="#handleAdd" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+        <Button text="Rafraîchir" onAction="#handleRefresh" style="-fx-background-color: #f39c12; -fx-text-fill: white;"/>
+        <Button text="Supprimer" onAction="#handleDelete" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+    </HBox>
+
+    <TableView fx:id="empruntsTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="membreColumn" text="Membre" prefWidth="200"/>
+            <TableColumn fx:id="documentColumn" text="Document" prefWidth="250"/>
+            <TableColumn fx:id="dateEmpruntColumn" text="Date Emprunt" prefWidth="150"/>
+            <TableColumn fx:id="dateRetourColumn" text="Retour Prévu" prefWidth="150"/>
+        </columns>
+    </TableView>
+
+</VBox>

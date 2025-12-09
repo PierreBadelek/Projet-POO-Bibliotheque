@@ -18,10 +18,10 @@ public class HibernateUtil {
             // Construire la SessionFactory
             sessionFactory = configuration.buildSessionFactory();
 
-            System.out.println("✅ Hibernate SessionFactory créée avec succès !");
+            System.out.println("Hibernate SessionFactory créée avec succès !");
 
         } catch (Throwable ex) {
-            System.err.println("❌ Erreur lors de l'initialisation de Hibernate : " + ex);
+            System.err.println("Erreur lors de l'initialisation de Hibernate : " + ex);
             ex.printStackTrace();
             throw new ExceptionInInitializerError(ex);
         }

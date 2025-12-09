@@ -25,7 +25,7 @@ public class InitDatabase {
             // Optionnel: Nettoyer et peupler la base
             // Décommenter ces lignes pour réinitialiser les données
 
-            // DatabaseSeeder.cleanDatabase();
+            //DatabaseSeeder.cleanDatabase();
 
             System.out.println("\nPeuplement de la base de données...");
             DatabaseSeeder.seed();

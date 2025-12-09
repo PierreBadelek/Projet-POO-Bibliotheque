@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.projetpoobibliotheque.controller.MembresController" spacing="10" style="-fx-padding: 20;">
+
+    <Label text="Gestion des Membres" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="Rechercher par nom, prénom ou email..." prefWidth="300"/>
+        <Button text="Rechercher" onAction="#handleSearch" style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+        <Button text="Ajouter" onAction="#handleAdd" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+        <Button text="Détails" onAction="#handleShowDetails" style="-fx-background-color: #9b59b6; -fx-text-fill: white;"/>
+        <Button text="Rafraîchir" onAction="#handleRefresh" style="-fx-background-color: #f39c12; -fx-text-fill: white;"/>
+        <Button text="Supprimer" onAction="#handleDelete" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+    </HBox>
+
+    <TableView fx:id="membresTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="nomColumn" text="Nom" prefWidth="200"/>
+            <TableColumn fx:id="prenomColumn" text="Prénom" prefWidth="200"/>
+            <TableColumn fx:id="emailColumn" text="Email" prefWidth="300"/>
+        </columns>
+    </TableView>
+
+</VBox>

@@ -1,6 +1,7 @@
 package com.example.projetpoobibliotheque;
 
 import com.example.projetpoobibliotheque.model.*;
+import com.example.projetpoobibliotheque.service.BibliothequeService;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -14,22 +15,22 @@ public class DatabaseSeeder {
     public static void seed() {
         System.out.println("========== DÉBUT DU SEEDING ==========");
 
-        Bibliotheque biblio = new Bibliotheque("Bibliothèque Centrale");
+        BibliothequeService service = new BibliothequeService();
 
         try {
             // 1. Créer des membres
             System.out.println("\n[1/5] Création des membres...");
-            Membre alice = new Membre("Alice Dupont", "alice.dupont@email.com");
-            Membre bob = new Membre("Bob Martin", "bob.martin@email.com");
-            Membre charlie = new Membre("Charlie Dubois", "charlie.dubois@email.com");
-            Membre diane = new Membre("Diane Leclerc", "diane.leclerc@email.com");
-            Membre eve = new Membre("Eve Rousseau", "eve.rousseau@email.com");
+            Membre alice = new Membre("Dupont", "Alice", "alice.dupont@email.com");
+            Membre bob = new Membre("Martin", "Bob", "bob.martin@email.com");
+            Membre charlie = new Membre("Dubois", "Charlie", "charlie.dubois@email.com");
+            Membre diane = new Membre("Leclerc", "Diane", "diane.leclerc@email.com");
+            Membre eve = new Membre("Rousseau", "Eve", "eve.rousseau@email.com");
 
-            biblio.ajouterMembre(alice);
-            biblio.ajouterMembre(bob);
-            biblio.ajouterMembre(charlie);
-            biblio.ajouterMembre(diane);
-            biblio.ajouterMembre(eve);
+            service.ajouterMembre(alice);
+            service.ajouterMembre(bob);
+            service.ajouterMembre(charlie);
+            service.ajouterMembre(diane);
+            service.ajouterMembre(eve);
             System.out.println("✓ 5 membres créés");
 
             // 2. Créer des livres (variété de genres)
@@ -43,14 +44,14 @@ public class DatabaseSeeder {
             Livre livre7 = new Livre("Dune", "Frank Herbert", "978-2221003039");
             Livre livre8 = new Livre("Les Misérables", "Victor Hugo", "978-2070409228");
 
-            biblio.ajouterDocument(livre1);
-            biblio.ajouterDocument(livre2);
-            biblio.ajouterDocument(livre3);
-            biblio.ajouterDocument(livre4);
-            biblio.ajouterDocument(livre5);
-            biblio.ajouterDocument(livre6);
-            biblio.ajouterDocument(livre7);
-            biblio.ajouterDocument(livre8);
+            service.ajouterDocument(livre1);
+            service.ajouterDocument(livre2);
+            service.ajouterDocument(livre3);
+            service.ajouterDocument(livre4);
+            service.ajouterDocument(livre5);
+            service.ajouterDocument(livre6);
+            service.ajouterDocument(livre7);
+            service.ajouterDocument(livre8);
             System.out.println("✓ 8 livres créés");
 
             // 3. Créer des magazines
@@ -61,56 +62,56 @@ public class DatabaseSeeder {
             Magazine mag4 = new Magazine("Challenges", "Collectif", 432);
             Magazine mag5 = new Magazine("Historia", "Collectif", 789);
 
-            biblio.ajouterDocument(mag1);
-            biblio.ajouterDocument(mag2);
-            biblio.ajouterDocument(mag3);
-            biblio.ajouterDocument(mag4);
-            biblio.ajouterDocument(mag5);
+            service.ajouterDocument(mag1);
+            service.ajouterDocument(mag2);
+            service.ajouterDocument(mag3);
+            service.ajouterDocument(mag4);
+            service.ajouterDocument(mag5);
             System.out.println("✓ 5 magazines créés");
 
             // 4. Créer des emprunts avec différents cas
             System.out.println("\n[4/5] Création des emprunts (différents cas d'utilisation)...");
 
             // CAS 1: Emprunt en cours, dans les délais
-            Emprunt emprunt1 = biblio.enregistrerEmprunt(alice, livre1);
+            Emprunt emprunt1 = service.enregistrerEmprunt(livre1, alice);
             System.out.println("  ✓ Cas 1: Alice emprunte '1984' (en cours, dans les délais)");
 
             // CAS 2: Emprunt en cours, bientôt en retard
-            Emprunt emprunt2 = biblio.enregistrerEmprunt(bob, livre2);
+            Emprunt emprunt2 = service.enregistrerEmprunt(livre2, bob);
             modifierDateEmprunt(emprunt2, LocalDate.now().minusDays(12)); // Emprunté il y a 12 jours
             System.out.println("  ✓ Cas 2: Bob emprunte 'Le Seigneur des Anneaux' (bientôt en retard)");
 
             // CAS 3: Emprunt EN RETARD
-            Emprunt emprunt3 = biblio.enregistrerEmprunt(charlie, livre3);
+            Emprunt emprunt3 = service.enregistrerEmprunt(livre3, charlie);
             modifierDateEmprunt(emprunt3, LocalDate.now().minusDays(20)); // Emprunté il y a 20 jours
             System.out.println("  ✓ Cas 3: Charlie emprunte 'Harry Potter' (EN RETARD depuis 6 jours)");
 
             // CAS 4: Emprunt très en retard
-            Emprunt emprunt4 = biblio.enregistrerEmprunt(diane, mag1);
+            Emprunt emprunt4 = service.enregistrerEmprunt(mag1, diane);
             modifierDateEmprunt(emprunt4, LocalDate.now().minusDays(35)); // Emprunté il y a 35 jours
             System.out.println("  ✓ Cas 4: Diane emprunte 'Sciences & Vie' (TRÈS EN RETARD depuis 21 jours)");
 
             // CAS 5: Emprunt retourné à temps
-            Emprunt emprunt5 = biblio.enregistrerEmprunt(eve, livre4);
+            Emprunt emprunt5 = service.enregistrerEmprunt(livre4, eve);
             modifierDateEmprunt(emprunt5, LocalDate.now().minusDays(10));
-            biblio.enregistrerRetour(emprunt5);
+            service.enregistrerRetour(emprunt5);
             System.out.println("  ✓ Cas 5: Eve a emprunté et rendu 'L'Étranger' à temps");
 
             // CAS 6: Emprunt retourné en retard
-            Emprunt emprunt6 = biblio.enregistrerEmprunt(alice, livre5);
+            Emprunt emprunt6 = service.enregistrerEmprunt(livre5, alice);
             modifierDateEmprunt(emprunt6, LocalDate.now().minusDays(25));
-            biblio.enregistrerRetour(emprunt6);
+            service.enregistrerRetour(emprunt6);
             System.out.println("  ✓ Cas 6: Alice a emprunté et rendu 'Fondation' en retard");
 
             // CAS 7: Membre avec plusieurs emprunts
-            Emprunt emprunt7 = biblio.enregistrerEmprunt(bob, mag2);
+            Emprunt emprunt7 = service.enregistrerEmprunt(mag2, bob);
             System.out.println("  ✓ Cas 7: Bob emprunte aussi 'National Geographic' (2e emprunt actif)");
 
             // CAS 8: Document très populaire (plusieurs emprunts successifs)
-            Emprunt emprunt8 = biblio.enregistrerEmprunt(charlie, livre6);
+            Emprunt emprunt8 = service.enregistrerEmprunt(livre6, charlie);
             modifierDateEmprunt(emprunt8, LocalDate.now().minusDays(8));
-            biblio.enregistrerRetour(emprunt8);
-            Emprunt emprunt9 = biblio.enregistrerEmprunt(diane, livre6);
+            service.enregistrerRetour(emprunt8);
+            Emprunt emprunt9 = service.enregistrerEmprunt(livre6, diane);
             System.out.println("  ✓ Cas 8: 'Le Petit Prince' est très populaire (plusieurs emprunts)");
 
             // CAS 9: Documents jamais empruntés (disponibles)
@@ -120,19 +121,11 @@ public class DatabaseSeeder {
 
             // 5. Afficher les statistiques finales
             System.out.println("\n[5/5] Génération des statistiques...");
-            biblio.genererStatistiques();
+            BibliothequeService.StatistiquesBibliotheque stats = service.genererStatistiques();
+            System.out.println(stats);
 
             System.out.println("\n========== SEEDING TERMINÉ AVEC SUCCÈS ==========");
-            System.out.println("\nCAS D'UTILISATION CRÉÉS:");
-            System.out.println("1. Emprunts en cours normaux");
-            System.out.println("2. Emprunts bientôt en retard");
-            System.out.println("3. Emprunts en retard");
-            System.out.println("4. Emprunts très en retard");
-            System.out.println("5. Emprunts retournés à temps");
-            System.out.println("6. Emprunts retournés en retard");
-            System.out.println("7. Membres avec plusieurs emprunts");
-            System.out.println("8. Documents populaires");
-            System.out.println("9. Documents jamais empruntés");
+
 
         } catch (Exception e) {
             System.err.println("❌ ERREUR lors du seeding: " + e.getMessage());

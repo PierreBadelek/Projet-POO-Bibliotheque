@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.projetpoobibliotheque.controller.DocumentsController" spacing="10" style="-fx-padding: 20;">
+
+    <Label text="Gestion des Documents" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="Rechercher par titre ou auteur..." prefWidth="300"/>
+        <Button text="Rechercher" onAction="#handleSearch" style="-fx-background-color: #27ae60; -fx-text-fill: white;"/>
+        <Button text="Ajouter" onAction="#handleAdd" style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+        <Button text="Détails" onAction="#handleShowDetails" style="-fx-background-color: #9b59b6; -fx-text-fill: white;"/>
+        <Button text="Rafraîchir" onAction="#handleRefresh" style="-fx-background-color: #f39c12; -fx-text-fill: white;"/>
+        <Button text="Supprimer" onAction="#handleDelete" style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+    </HBox>
+
+    <TableView fx:id="documentsTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" prefWidth="50"/>
+            <TableColumn fx:id="titreColumn" text="Titre" prefWidth="300"/>
+            <TableColumn fx:id="auteurColumn" text="Auteur" prefWidth="200"/>
+            <TableColumn fx:id="typeColumn" text="Type" prefWidth="150"/>
+            <TableColumn fx:id="disponibleColumn" text="Disponible" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+</VBox>
